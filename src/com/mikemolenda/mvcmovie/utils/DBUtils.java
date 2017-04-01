@@ -24,16 +24,16 @@ public class DBUtils {
     public static Movie retrieveMovie(Connection conn, int id) throws SQLException {
 
         // Execute SQL query for row with specified id
-        String sql = "SELECT a.Id, a.Title, a.Year, a.Genre FROM Movies a WHERE a.Id=?";
+        String sql = "SELECT a.Id, a.title, a.year, a.genre FROM movies a WHERE a.id=?";
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setInt(1, id);
         ResultSet rs = pstm.executeQuery();
 
         // Store result set in bean and return
         while(rs.next()) {
-            String title = rs.getString("Title");
-            int year = rs.getInt("Year");
-            Movie.Genre genre = Movie.Genre.valueOf(rs.getString("Genre"));
+            String title = rs.getString("title");
+            int year = rs.getInt("year");
+            Movie.Genre genre = Movie.Genre.valueOf(rs.getString("genre"));
 
             Movie movie = new Movie(id, title, year, genre);
             return movie;
@@ -53,7 +53,7 @@ public class DBUtils {
     public static List<Movie> retrieveAllMovies(Connection conn) throws SQLException {
 
         // Execute SQL query for row with specified id
-        String sql = "SELECT a.Id, a.Title, a.Year, a.Genre FROM Movies a";
+        String sql = "SELECT a.id, a.title, a.year, a.genre FROM movies a";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
 
@@ -61,10 +61,10 @@ public class DBUtils {
         List<Movie> movList = new ArrayList<Movie>();
 
         while(rs.next()) {
-            int id = rs.getInt("Id");
-            String title = rs.getString("Title");
-            int year = rs.getInt("Year");
-            Movie.Genre genre = Movie.Genre.valueOf(rs.getString("Genre"));
+            int id = rs.getInt("id");
+            String title = rs.getString("title");
+            int year = rs.getInt("year");
+            Movie.Genre genre = Movie.Genre.valueOf(rs.getString("genre"));
 
             Movie movie = new Movie(id, title, year, genre);
             movList.add(movie);
