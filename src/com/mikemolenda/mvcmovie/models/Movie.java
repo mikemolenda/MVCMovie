@@ -2,6 +2,9 @@ package com.mikemolenda.mvcmovie.models;
 
 import java.io.Serializable;
 
+/**
+ * Bean for handling Movie data.
+ */
 public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
