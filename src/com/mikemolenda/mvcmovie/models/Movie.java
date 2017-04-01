@@ -9,7 +9,7 @@ public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public enum Genre {Action, Animation, Comedy, Documentary, Drama, Horror, SciFi, Western}
+    public enum Genre {Action, Animation, Comedy, Documentary, Drama, Horror, SciFi, Western, Misc}
 
     private int id;
     private String title;

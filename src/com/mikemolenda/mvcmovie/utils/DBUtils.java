@@ -74,5 +74,66 @@ public class DBUtils {
 
     }
 
+    /**
+     * Updates a row in the DB with the data from a bean
+     * @param conn Connection to the DB
+     * @param movie Movie object containing the data to write
+     * @throws SQLException
+     */
+    public static void updateMovie(Connection conn, Movie movie) throws SQLException {
 
+        // Prepare SQL statement
+        String sql = "UPDATE movies SET title=?, year=?, genre=? WHERE id=?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+
+        // Set column values
+        pstm.setString(1, movie.getTitle());
+        pstm.setInt(2, movie.getYear());
+        pstm.setString(3, movie.getGenre().toString());
+        pstm.setInt(4, movie.getId());
+
+        // Execute SQL
+        pstm.executeUpdate();
+
+    }
+
+    /**
+     * Inserts a new row in the DB, using data from a Movie bean
+     * @param conn Connection to the DB
+     * @param movie Movie object containing the data to write
+     * @throws SQLException
+     */
+    public static void insertMovie(Connection conn, Movie movie) throws SQLException {
+
+        // Prepare SQL statement
+        String sql = "INSERT INTO movies(title, year, genre) VALUES (?,?,?)";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+
+        // Set column values
+        // id is auto-incrementing, so do not set
+        pstm.setString(1, movie.getTitle());
+        pstm.setInt(2, movie.getYear());
+        pstm.setString(3, movie.getGenre().toString());
+
+        // Execute SQL
+        pstm.executeUpdate();
+
+    }
+
+    /**
+     * Deletes the row from the database with the specified id
+     * @param conn Connection to the DB
+     * @param id ID of the row to delete
+     * @throws SQLException
+     */
+    public static void deleteMovie(Connection conn, int id) throws SQLException {
+
+        // Execute SQL statement for row with specified ID
+        String sql = "DELETE movies WHERE id=?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id);
+        pstm.executeUpdate();
+
+    }
+    
 }
