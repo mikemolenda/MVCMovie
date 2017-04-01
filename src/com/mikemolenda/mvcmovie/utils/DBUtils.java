@@ -52,7 +52,7 @@ public class DBUtils {
      */
     public static List<Movie> retrieveAllMovies(Connection conn) throws SQLException {
 
-        // Execute SQL query for row with specified id
+        // Execute SQL query
         String sql = "SELECT a.id, a.title, a.year, a.genre FROM movies a";
         PreparedStatement pstm = conn.prepareStatement(sql);
         ResultSet rs = pstm.executeQuery();
@@ -68,6 +68,40 @@ public class DBUtils {
 
             Movie movie = new Movie(id, title, year, genre);
             movList.add(movie);
+        }
+
+        return movList;
+
+    }
+
+    /**
+     * Retrieves ArrayList of movies that contain searchTerm (case-insensitive)
+     * @param conn Connection to the DB
+     * @param searchTerm Title to query
+     * @return
+     * @throws SQLException
+     */
+    public static List<Movie> findMoviesByTitle(Connection conn, String searchTerm) throws SQLException {
+
+        // Select all movies
+        String sql = "SELECT a.id, a.title, a.year, a.genre FROM movies a";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        ResultSet rs = pstm.executeQuery();
+
+        // If title contains searchTerm, store in ArrayList and return
+        List<Movie> movList = new ArrayList<Movie>();
+
+        while(rs.next()) {
+            int id = rs.getInt("id");
+            String title = rs.getString("title");
+            int year = rs.getInt("year");
+            Movie.Genre genre = Movie.Genre.valueOf(rs.getString("genre"));
+
+            if (title.toLowerCase().contains(searchTerm.toLowerCase())) {
+                Movie movie = new Movie(id, title, year, genre);
+                movList.add(movie);
+            }
+
         }
 
         return movList;
@@ -135,5 +169,5 @@ public class DBUtils {
         pstm.executeUpdate();
 
     }
-    
+
 }
