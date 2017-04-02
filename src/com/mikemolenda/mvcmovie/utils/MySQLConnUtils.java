@@ -37,10 +37,22 @@ public class MySQLConnUtils {
             String hostname, String dbName, String username, String password)
             throws ClassNotFoundException, SQLException {
 
-        String connectionUrl = "jdbc:mysql://" + hostname + ":3306/" + dbName;
+        try {
 
-        Connection conn = DriverManager.getConnection(connectionUrl, username, password);
-        return conn;
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+
+            String connectionUrl = "jdbc:mysql://" + hostname + ":3306/" + dbName + "?useLegacyDatetimeCode=false&serverTimezone=America/Chicago";
+
+            Connection conn = DriverManager.getConnection(connectionUrl, username, password);
+            return conn;
+
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return null;
 
     }
 

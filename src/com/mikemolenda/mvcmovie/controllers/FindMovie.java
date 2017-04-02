@@ -36,9 +36,9 @@ public class FindMovie extends HttpServlet {
 
                 if (movie != null) {
                     request.setAttribute("movie", movie);
-                    url = "views/movie-info.jsp";
+                    url = "/views/movie-info.jsp";
                 } else {
-                    url = "views/not-found.jsp";
+                    url = "/views/not-found.jsp";
                 }
             }
 
@@ -50,20 +50,20 @@ public class FindMovie extends HttpServlet {
                 // Show list of matching titles if more than one found
                 if (results.size() > 1) {
                     request.setAttribute("movList", results);
-                    url = "views/list.jsp";
+                    url = "/views/list.jsp";
 
                     // Show item info if only one title found
                 } else if (results.size() == 1) {
                     request.setAttribute("movie", results.get(0));
-                    url = "views/movie-info.jsp";
+                    url = "/views/movie-info.jsp";
 
                     // Show not found if no results found
                 } else {
-                    url = "views/not-found.jsp";
+                    url = "/views/not-found.jsp";
                 }
 
             } else {
-                url = "views/not-found.jsp";
+                url = "/views/not-found.jsp";
             }
 
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(url);

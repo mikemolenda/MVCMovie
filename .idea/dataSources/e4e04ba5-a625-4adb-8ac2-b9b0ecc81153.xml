@@ -3047,7 +3047,7 @@
     </column>
     <column id="677" parent="68" name="year">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(4)|0</DataType>
     </column>
     <column id="678" parent="68" name="genre">
       <Position>4</Position>
@@ -3055,18 +3055,10 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;Misc&apos;</DefaultExpression>
     </column>
-    <index id="679" parent="68" name="movies_id_uindex">
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="680" parent="68" name="PRIMARY">
+    <key id="679" parent="68" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-    </key>
-    <key id="681" parent="68" name="movies_id_uindex">
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>movies_id_uindex</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
