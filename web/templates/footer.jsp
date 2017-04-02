@@ -1,6 +1,0 @@
-</div>
-
-$END$
-
-</body>
-</html>

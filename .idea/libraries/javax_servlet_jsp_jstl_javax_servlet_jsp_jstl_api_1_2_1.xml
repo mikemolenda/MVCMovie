@@ -8,6 +8,8 @@
       <root url="jar://$MAVEN_REPOSITORY$/javax/el/el-api/2.2/el-api-2.2.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

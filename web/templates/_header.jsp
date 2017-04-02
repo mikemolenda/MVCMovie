@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-    <title>$Title$</title>
+    <title>${pageTitle}</title>
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,8 +24,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">Find a Movie</a></li>
-                <li><a href="add.jsp">Add a Movie</a></li>
-                <li><a href="list.jsp">Browse all Movies</a></li>
+                <li><a href="list-movies">Browse all Movies</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

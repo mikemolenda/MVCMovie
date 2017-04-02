@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,8 +35,10 @@ public class FindMovie extends HttpServlet {
 
                 if (movie != null) {
                     request.setAttribute("movie", movie);
+                    request.setAttribute("pageTitle", "Movie info for " + movie.getTitle());
                     url = "/views/movie-info.jsp";
                 } else {
+                    request.setAttribute("pageTitle", "Not Found!");
                     url = "/views/not-found.jsp";
                 }
             }
@@ -50,19 +51,23 @@ public class FindMovie extends HttpServlet {
                 // Show list of matching titles if more than one found
                 if (results.size() > 1) {
                     request.setAttribute("movList", results);
-                    url = "/views/list.jsp";
+                    request.setAttribute("pageTitle", "Multiple results found");
+                    url = "/views/movie-list.jsp";
 
                     // Show item info if only one title found
                 } else if (results.size() == 1) {
                     request.setAttribute("movie", results.get(0));
+                    request.setAttribute("pageTitle", "Movie info for " + results.get(0).getTitle());
                     url = "/views/movie-info.jsp";
 
                     // Show not found if no results found
                 } else {
+                    request.setAttribute("pageTitle", "Not Found!");
                     url = "/views/not-found.jsp";
                 }
 
             } else {
+                request.setAttribute("pageTitle", "Not Found!");
                 url = "/views/not-found.jsp";
             }
 
